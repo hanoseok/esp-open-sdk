@@ -73,7 +73,7 @@ VENDOR_SDK_DIR_0.9.2 = esp_iot_sdk_v0.9.2
 
 
 
-all: esptool libcirom standalone sdk sdk_patch $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc lwip
+all: esptool esptool2 libcirom standalone sdk sdk_patch $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc lwip
 	@echo
 	@echo "Xtensa toolchain is built, to use it:"
 	@echo
@@ -101,7 +101,7 @@ ifeq ($(STANDALONE),y)
 	@sed -e 's/\r//' sdk/ld/eagle.rom.addr.v6.ld >$(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/eagle.rom.addr.v6.ld
 endif
 
-clean: clean-sdk
+clean: clean-sdk clean-esptool2
 	$(MAKE) -C crosstool-NG clean MAKELEVEL=0
 	-rm -rf crosstool-NG/.build/src
 	-rm -f crosstool-NG/local-patches/gcc/4.8.5/1000-*
@@ -121,6 +121,15 @@ clean-sysroot:
 
 esptool: toolchain
 	cp esptool/esptool.py $(TOOLCHAIN)/bin/
+
+esptool2: toolchain
+	$(MAKE) -C esptool2 
+	cp esptool2/esptool2 $(TOOLCHAIN)/bin/ 
+
+clean-esptool2: 
+	$(MAKE) -C esptool2 clean
+	rm -f $(TOOLCHAIN)/bin/esptool2
+
 
 toolchain: $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc
 
