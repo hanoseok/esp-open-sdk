@@ -74,7 +74,7 @@ VENDOR_SDK_DIR_0.9.2 = esp_iot_sdk_v0.9.2
 
 
 
-all: esptool esptool2 libcirom standalone sdk sdk_patch $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc lwip
+all: esptool esptool2 libcirom standalone sdk sdk_patch $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc lwip sming
 	@echo
 	@echo "Xtensa toolchain is built, to use it:"
 	@echo
@@ -131,7 +131,7 @@ clean-esptool2:
 	$(MAKE) -C esptool2 clean
 	rm -f $(TOOLCHAIN)/bin/esptool2
 
-sming: toolchain
+sming:
 	$(MAKE) -C Sming/Sming ENABLE_SSL=1 
 
 clean-sming:
