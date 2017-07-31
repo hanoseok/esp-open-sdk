@@ -14,7 +14,8 @@ VENDOR_SDK = 2.0.0
 
 .PHONY: crosstool-NG toolchain libhal libcirom sdk
 
-
+ESP_HOME = $(shell pwd)
+SMING_HOME = $(ESP_HOME)/Sming/Sming
 
 TOP = $(PWD)
 SHELL = /bin/bash
@@ -101,7 +102,7 @@ ifeq ($(STANDALONE),y)
 	@sed -e 's/\r//' sdk/ld/eagle.rom.addr.v6.ld >$(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/eagle.rom.addr.v6.ld
 endif
 
-clean: clean-sdk clean-esptool2
+clean: clean-sming clean-esptool2 clean-sdk
 	$(MAKE) -C crosstool-NG clean MAKELEVEL=0
 	-rm -rf crosstool-NG/.build/src
 	-rm -f crosstool-NG/local-patches/gcc/4.8.5/1000-*
@@ -130,6 +131,11 @@ clean-esptool2:
 	$(MAKE) -C esptool2 clean
 	rm -f $(TOOLCHAIN)/bin/esptool2
 
+sming: toolchain
+	$(MAKE) -C Sming/Sming ENABLE_SSL=1 
+
+clean-sming:
+	$(MAKE) -C Sming/Sming clean
 
 toolchain: $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc
 
