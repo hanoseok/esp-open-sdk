@@ -2,6 +2,11 @@ __MACOSX/
 /.sdk_patch_*
 /esp_iot_sdk_v*/
 /esp_iot_sdk_v*.zip
-/ESP8266_NONOS_SDK_V1.5.1_16_01_08.zip
+/ESP8266_NONOS_SDK_V2.0.0_16_08_10/
+/ESP8266_NONOS_SDK_V2.0.0_16_08_10.zip
+/ESP8266_NONOS_SDK_V2.0.0_patch_16_08_09.zip
 /sdk
 /xtensa-lx106-elf/
+/readme.txt
+/release_note.txt
+/user_rf_cal_sector_set.o
