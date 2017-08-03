@@ -132,7 +132,7 @@ clean-esptool2:
 	rm -f $(TOOLCHAIN)/bin/esptool2
 
 sming:
-	$(MAKE) -C Sming/Sming ENABLE_SSL=1 
+	$(MAKE) -C Sming/Sming 
 
 clean-sming:
 	$(MAKE) -C Sming/Sming clean

@@ -10,3 +10,4 @@ __MACOSX/
 /readme.txt
 /release_note.txt
 /user_rf_cal_sector_set.o
+*.o

@@ -18,4 +18,4 @@
 [submodule "Sming"]
 	path = Sming
 	url = https://github.com/hanoseok/Sming
-	branch = master
+	branch = feature/Ecohub
