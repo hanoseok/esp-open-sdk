@@ -15,3 +15,7 @@
 [submodule "esptool2"]
 	path = esptool2
 	url = https://github.com/hanoseok/esptool2
+[submodule "Sming"]
+	path = Sming
+	url = https://github.com/hanoseok/Sming.git
+	branch = ecohub
