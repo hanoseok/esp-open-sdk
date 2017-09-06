@@ -15,7 +15,6 @@ VENDOR_SDK = 2.0.0
 .PHONY: crosstool-NG toolchain libhal libcirom sdk
 
 ESP_HOME = $(shell pwd)
-SMING_HOME = $(ESP_HOME)/Sming/Sming
 
 TOP = $(PWD)
 SHELL = /bin/bash
@@ -74,7 +73,7 @@ VENDOR_SDK_DIR_0.9.2 = esp_iot_sdk_v0.9.2
 
 
 
-all: esptool esptool2 libcirom standalone sdk sdk_patch $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc lwip sming
+all: esptool esptool2 libcirom standalone sdk sdk_patch $(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/libhal.a $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc lwip
 	@echo
 	@echo "Xtensa toolchain is built, to use it:"
 	@echo
@@ -102,7 +101,7 @@ ifeq ($(STANDALONE),y)
 	@sed -e 's/\r//' sdk/ld/eagle.rom.addr.v6.ld >$(TOOLCHAIN)/xtensa-lx106-elf/sysroot/usr/lib/eagle.rom.addr.v6.ld
 endif
 
-clean: clean-sming clean-esptool2 clean-sdk
+clean: clean-esptool2 clean-sdk
 	$(MAKE) -C crosstool-NG clean MAKELEVEL=0
 	-rm -rf crosstool-NG/.build/src
 	-rm -f crosstool-NG/local-patches/gcc/4.8.5/1000-*
@@ -130,12 +129,6 @@ esptool2: toolchain
 clean-esptool2: 
 	$(MAKE) -C esptool2 clean
 	rm -f $(TOOLCHAIN)/bin/esptool2
-
-sming:
-	$(MAKE) -C Sming/Sming 
-
-clean-sming:
-	$(MAKE) -C Sming/Sming clean
 
 toolchain: $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc
 
